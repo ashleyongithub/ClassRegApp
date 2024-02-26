@@ -1,0 +1,26 @@
+﻿@model List<ClassRegistration>
+
+<div class="text-center">
+    <h1 class="display-4">Class Registrations</h1>
+</div>
+<table>
+    <thead>
+        <tr>
+            <th>Class Name</th>
+            <th>Teacher Name</th>
+            <th>Registrations</th>
+            <th>Number Paid</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var classReg in Model)
+        {
+            <tr>
+                <td>@classReg.Class</td>
+                <td>@classReg.TeacherName</td>
+                <td>@classReg.Registrations</td>
+                <td>@classReg.NumberPaid</td>
+            </tr>
+        }
+    </tbody>
+</table>

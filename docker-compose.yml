@@ -1,0 +1,32 @@
+version: '3.4'
+
+services:
+  classregapp.web:
+    image: ${DOCKER_REGISTRY-}classregappweb
+    build:
+      context: .
+      dockerfile: ClassRegApp.Web/Dockerfile
+    depends_on:
+       - database
+       - classregapp.api
+
+  classregapp.api:
+    image: ${DOCKER_REGISTRY-}classregappapi
+    build:
+      context: .
+      dockerfile: ClassRegApp.Api/Dockerfile
+
+  database:
+    build:
+      context: .
+      dockerfile: ./Docker/db.dockerfile
+    environment:
+      SA_PASSWORD: "P@55w0rd"
+    ports:
+      - 1433:1433
+    volumes:
+      - /var/opt/mssql
+      - .\Docker:/src
+
+
+
